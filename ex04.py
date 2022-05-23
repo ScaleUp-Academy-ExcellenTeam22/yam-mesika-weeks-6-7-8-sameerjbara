@@ -1,12 +1,11 @@
 class Message:
     """A Message class.
-
         Parameters
         ----------
         id : int
             id of the message.
         body : str
-            message body 
+            message body
         sender : str
             the sender of the message
         Attributes
@@ -14,7 +13,7 @@ class Message:
         id : int
             id of the message.
         body : str
-            message body 
+            message body
         sender : str
             the sender of the message
         """
@@ -28,15 +27,16 @@ class Message:
         return (f"Message Id : {self.message_sender} || Message Body : {self.message_body} || "
                 f"Message Sender : {self.message_sender} || Seen : {self.is_message_seen}")
 
+    def __len__(self):
+        return len(self.message_body)
+
 
 class PostOffice:
     """A Post Office class. Allows users to message each other.
-
     Parameters
     ----------
     usernames : list
         Users for which we should create PO Boxes.
-
     Attributes
     ----------
     message_id : int
@@ -51,7 +51,6 @@ class PostOffice:
 
     def read_inbox(self, username, *N):
         """Returns the (first N/ all) unseen messages in the user inbox.
-
                                 Parameters
                                 ----------
                                 username : str
@@ -62,11 +61,9 @@ class PostOffice:
                                 -------
                                 list
                                     list of unseen messages in the user inbox.
-
                                 Raises
                                 ------
                                 none
-
                                 """
 
         messages = []
@@ -82,7 +79,6 @@ class PostOffice:
 
     def search_inbox(self, username, string):
         """Returns a list of messages that contain the given string in the user inbox.
-
                         Parameters
                         ----------
                         username : str
@@ -93,17 +89,14 @@ class PostOffice:
                         -------
                         list
                             list of all messages that contain the string.
-
                         Raises
                         ------
                         none
-
                         """
         return [message for message in self.boxes[username] if string in message.message_body]
 
     def send_message(self, sender, recipient, message_body, urgent=False):
         """Send a message to a recipient.
-
         Parameters
         ----------
         sender : str
@@ -115,23 +108,19 @@ class PostOffice:
         urgent : bool, optional
             The urgency of the message.
             Urgent messages appear first.
-
         Returns
         -------
         int
             The message ID, auto incremented number.
-
         Raises
         ------
         KeyError
             If the recipient does not exist.
-
         Examples
         --------
         After creating a PO box and sending a letter,
         the recipient should have 1 messege in the
         inbox.
-
         >>> po_box = PostOffice(['a', 'b'])
         >>> message_id = po_box.send_message('a', 'b', 'Hello!')
         >>> len(po_box.boxes['b'])
