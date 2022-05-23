@@ -1,6 +1,5 @@
 class User:
     """A User  class. Allows managing users .
-
        Parameters
        ----------
        user_name : str
@@ -30,7 +29,6 @@ class User:
 
 class File:
     """A FIle class. Allows creating Basic Files .
-
            Parameters
            ----------
            size : int
@@ -60,7 +58,6 @@ class File:
 
 class TextFile(File):
     """A TextFIle class. Allows creating text Files .
-
                Parameters
                ----------
                size : int
@@ -96,6 +93,9 @@ class TextFile(File):
                 """
         return str(self.content).count(string)
 
+    def __init__(self, user_name, password, user_type):
+        super().__init__(user_name, password, user_type)
+
     def read(self, user):
         """:returns the content of the file
         only of the requesting user is the creator or the manager  of the file
@@ -117,7 +117,6 @@ class TextFile(File):
 
 class BinaryFile(File):
     """A BinaryFIle class. Allows creating Binary Files .
-
                    Parameters
                    ----------
                    size : int
@@ -135,6 +134,9 @@ class BinaryFile(File):
                    creator : User
                        the creator of the file.
                    """
+
+    def __init__(self, user_name, password, user_type):
+        super().__init__(user_name, password, user_type)
 
     def get_dimensions(self):
         pass
@@ -160,7 +162,6 @@ class BinaryFile(File):
 
 class FolderFile(File):
     """A folder class. Allows creating folders.
-
                    Parameters
                    ----------
                    size : int
@@ -178,4 +179,8 @@ class FolderFile(File):
                    creator : User
                        the creator of the file.
                    """
+
+    def __init__(self, user_name, password, user_type):
+        super().__init__(user_name, password, user_type)
+
     pass
