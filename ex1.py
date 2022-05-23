@@ -1,17 +1,17 @@
 from PIL import Image
 
 
-def decrypt_message(path):
-    """Returns the decrypted message from a encrypted image 
+def decrypt_message(file_path: str) -> str:
+    """Returns the decrypted message from encrypted image
     by converting the location of each black pixel to a letter.
             Args:
-                path (str): the path of the image.
+                file_path (str): the path of the image.
             Returns:
                 std: The decrypted message.
             Raises:
                 none
             """
-    image = Image.open(path)
+    image = Image.open(file_path)
     image_pixels = image.load()
     rows_size, cols_size = image.size
     decrypted_message = [chr(col) for row in range(0, rows_size) for col in range(0, cols_size)
