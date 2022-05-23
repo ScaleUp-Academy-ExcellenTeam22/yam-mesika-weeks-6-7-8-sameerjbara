@@ -1,26 +1,20 @@
-def group_by(func, iterable):
-    """Returns a dictonary that the keys are the values that are returned from the passed function
-       and the values of each key is list of all elements that retrund from the function
-       the same value as the key
-            Args:
-                func (method): the function we will preform on each object in the iterable.
-                iterable.
-            Returns:
-                dictonary: The grouped lists.
-            Raises:
-                none
-            Examples:
-                givin a list of strings and the len function
-                will return a dictornary the the keys are the length of each string
-                and the values are list of strings the the value of it equal the key.
-                >>> print(group_by(len, ["hi", "bye"]))
-                {2: ['hi'], 3: ['bye']}
-            """
-    print(type(func))
-    grouped_lists = {func(element): [] for element in iterable}
+from collections import defaultdict
+from typing import Callable
+
+
+def group_by(func: Callable[[iter], str or int], iterable: iter) -> defaultdict:
+    """
+    create a defaultdict when all each key is a list of all object that share the same return value and
+    the key is all the values that return from the given function
+    @:param func: the given function , iterable : the iterable object
+    @:return defaultdict: the result dict
+
+    """
+    grouped_lists = defaultdict(list)
     for element in iterable:
         grouped_lists[func(element)].append(element)
     return grouped_lists
 
 
-print(group_by(len, ["hi", "hi", "bye", "fff", "ggg", "la"]))
+group_by(len, ["hi", "hi", "bye", "fff", "ggg", "la"])
+
